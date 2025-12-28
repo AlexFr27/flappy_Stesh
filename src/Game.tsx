@@ -53,8 +53,11 @@ const STESHA_WIDTH = 80;
 const STESHA_HEIGHT = 80;
 
 // Мобильные константы
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MOBILE_STESHA_WIDTH = 60;  // Уменьшенный размер для мобильных
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MOBILE_STESHA_HEIGHT = 60;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MOBILE_PIPE_SPACING_MULTIPLIER = 1.8; // Увеличенное расстояние между трубами
 
 // Функции для работы с рекордами
@@ -179,7 +182,7 @@ const Game: React.FC = () => {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isMobile]);
 
   const steshaImageRef = useRef<HTMLImageElement>(new Image());
 
@@ -235,6 +238,7 @@ const Game: React.FC = () => {
         velocity: JUMP_FORCE,
       },
     }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState.gameStarted, gameState.gameOver, gameState.isPaused]);
 
   // Функция паузы
@@ -391,6 +395,7 @@ const Game: React.FC = () => {
     }, frameInterval);
 
     return () => clearInterval(gameLoop);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState.gameStarted, gameState.gameOver, gameState.isPaused, gameState.frameRate]);
 
   // Отрисовка с оптимизациями производительности
@@ -604,7 +609,6 @@ const Game: React.FC = () => {
       ctx.fillRect(0, 0, dimensions.width, dimensions.height);
 
       const largeFontSize = 48 * dimensions.scale;
-      const mediumFontSize = 32 * dimensions.scale;
       const smallFontSize = 24 * dimensions.scale;
 
       ctx.fillStyle = '#FFF';
@@ -630,7 +634,6 @@ const Game: React.FC = () => {
       ctx.fillRect(0, 0, dimensions.width, dimensions.height);
 
       const largeFontSize = 48 * dimensions.scale;
-      const mediumFontSize = 32 * dimensions.scale;
       const smallFontSize = 24 * dimensions.scale;
 
       ctx.fillStyle = '#FFF';
@@ -750,6 +753,7 @@ const Game: React.FC = () => {
         canvas.removeEventListener('touchend', handleTouch);
       };
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState.gameStarted, gameState.gameOver, gameState.isPaused, gameState.isMobile, dimensions, jump, togglePause]);
 
   return (
