@@ -1,34 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- Оптимизированный viewport для мобильных -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+
+    <!-- Тема и цвета -->
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- PWA настройки -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Flapping Stesha" />
+    <meta name="application-name" content="Flapping Stesha" />
+
+    <!-- SEO оптимизация -->
+    <meta name="description" content="Flapping Stesha - увлекательная игра в стиле Flappy Bird с фотографией Стеши! Управляйте персонажем, избегайте препятствий и набирайте очки. Отлично подходит для мобильных устройств!" />
+    <meta name="keywords" content="игра, flappy bird, мобильная игра, аркада, развлечения, стеша" />
+    <meta name="author" content="Flapping Stesha Game" />
+
+    <!-- Open Graph для социальных сетей -->
+    <meta property="og:title" content="Flapping Stesha - Мобильная игра" />
+    <meta property="og:description" content="Увлекательная игра в стиле Flappy Bird! Играйте на мобильном или компьютере." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="%PUBLIC_URL%/logo192.png" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Flapping Stesha" />
+    <meta name="twitter:description" content="Увлекательная мобильная игра в стиле Flappy Bird!" />
+
+    <!-- Preload критичных ресурсов -->
+    <link rel="preload" href="/static/media/Stesha.png" as="image" />
+
+    <!-- Иконки для всех устройств -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="%PUBLIC_URL%/logo192.png" />
+
+    <!-- Manifest для PWA -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Стили для улучшенной производительности на мобильных -->
+    <style>
+      /* Предотвращение выделения текста на мобильных */
+      * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Отключение зума на input элементах */
+      input, textarea, select {
+        font-size: 16px;
+      }
+
+      /* Оптимизация для фуллскрин игр */
+      body, html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      #root {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Улучшенный рендеринг для мобильных */
+      canvas {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: -o-crisp-edges;
+        image-rendering: pixelated;
+        image-rendering: optimize-contrast;
+      }
+
+      /* Убираем bouncing на iOS */
+      body {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: none;
+      }
+    </style>
+
+    <title>Flapping Stesha - Мобильная игра</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <!-- Регистрация Service Worker для оптимизации производительности -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

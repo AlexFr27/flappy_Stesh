@@ -2,6 +2,7 @@
   "name": "flipping_bird_by_stesha",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://alexfr27.github.io/flappy_Stesh",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
